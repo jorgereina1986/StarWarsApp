@@ -27,7 +27,6 @@ public class ListFragment extends Fragment {
     private List<Results> characterList = new ArrayList<>();
     private SwViewModel viewModel;
 
-
     public ListFragment() {
         // Required empty public constructor
     }

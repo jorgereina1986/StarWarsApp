@@ -18,9 +18,11 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 //    private DataRepository dataRepository = new DataRepository();
 
     private List<Results> characterList;
+    private ItemClickListener listener;
 
-    public SwAdapter(List<Results> characterList) {
+    public SwAdapter(List<Results> characterList, ItemClickListener listener) {
         this.characterList = characterList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -53,8 +55,8 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
         @Override
         public void onClick(View v) {
-
             int clickedPosition = getAdapterPosition();
+            listener.onItemClick(clickedPosition);
 
         }
     }
