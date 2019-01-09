@@ -18,17 +18,20 @@ public class SwViewModel extends ViewModel {
     private static final String BASE_URL = "https://swapi.co/api/";
     private static final String TAG = SwViewModel.class.getSimpleName();
 
-    private MutableLiveData<List<Results>> people;
+    private DataRepository dataRepository = new DataRepository();
 
-    public LiveData<List<Results>> getPeople() {
-        if (people == null) {
-            people = new MutableLiveData<>();
-            loadPeople();
+    private MutableLiveData<List<Results>> characterList;
+
+    public MutableLiveData<List<Results>> getCharacterList() {
+
+        if (characterList == null) {
+            characterList = new MutableLiveData<>();
+            loadCharacters();
         }
-        return people;
+        return characterList;
     }
 
-    private void loadPeople() {
+        private void loadCharacters() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -40,6 +43,7 @@ public class SwViewModel extends ViewModel {
             @Override
             public void onResponse(Call<StarWarsResponse> call, Response<StarWarsResponse> response) {
                 Log.d(TAG, "onResponse: " + response.body().getResults().get(0).getName());
+                characterList.setValue(response.body().getResults());
             }
 
             @Override

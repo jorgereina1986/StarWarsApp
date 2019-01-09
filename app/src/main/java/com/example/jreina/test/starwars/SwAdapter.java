@@ -2,6 +2,7 @@ package com.example.jreina.test.starwars;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,18 @@ import android.widget.TextView;
 
 import com.example.jreina.test.R;
 
+import java.util.List;
+
 public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
-    private DataRepository dataRepository = new DataRepository();
+    private static final String TAG = SwAdapter.class.getSimpleName();
+//    private DataRepository dataRepository = new DataRepository();
+
+    private List<Results> characterList;
+
+    public SwAdapter(List<Results> characterList) {
+        this.characterList = characterList;
+    }
 
     @NonNull
     @Override
@@ -22,13 +32,14 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SwViewHolder swViewHolder, int i) {
-        swViewHolder.nameTv.setText(dataRepository.getPeople().get(i).getName());
-        notifyDataSetChanged();
+        Results character = characterList.get(i);
+        swViewHolder.nameTv.setText(character.getName());
     }
 
     @Override
     public int getItemCount() {
-        return dataRepository.getPeopleListSize();
+        Log.d(TAG, "getItemCount: " + characterList.size());
+        return characterList.size();
     }
 
     class SwViewHolder extends RecyclerView.ViewHolder {

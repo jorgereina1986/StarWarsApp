@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.jreina.test.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,29 +25,30 @@ public class BaseActivity extends AppCompatActivity {
     private static final String TAG = BaseActivity.class.getSimpleName();
     private RecyclerView starWarsRv;
     private SwAdapter adapter;
+    private List<Results> characterList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+
+        SwViewModel viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
+
         starWarsRv = findViewById(R.id.star_wars_rv);
         starWarsRv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new SwAdapter();
+        adapter = new SwAdapter(characterList);
         starWarsRv.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
 
 
-
-
-
-//        SwViewModel viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
-//        viewModel.getPeople().observe(this, new Observer<List<Results>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Results> results) {
-//
-//            }
-//        });
-
+        viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
+        viewModel.getCharacterList().observe(this, new Observer<List<Results>>() {
+            @Override
+            public void onChanged(@Nullable List<Results> results) {
+                characterList.addAll(results);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 
     }
