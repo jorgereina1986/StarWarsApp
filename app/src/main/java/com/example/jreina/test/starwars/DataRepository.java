@@ -11,18 +11,24 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DataManager {
+public class DataRepository {
 
-    private static final String TAG = DataManager.class.getSimpleName();
+    private static final String TAG = DataRepository.class.getSimpleName();
     private static final String BASE_URL = "https://swapi.co/api/";
+
+    private List<Results> peoples = loadPeople();
 
 
     public List<Results> getPeople() {
-        return loadPeople();
+        return peoples;
+    }
+
+    public Results getPerson(int position) {
+        return peoples.get(position);
     }
 
     public int getPeopleListSize() {
-        return (loadPeople() != null ? loadPeople().size() : -1);
+        return (peoples != null ? peoples.size() : -1);
     }
 
     private List<Results> loadPeople() {
@@ -37,7 +43,7 @@ public class DataManager {
         call.enqueue(new Callback<StarWarsResponse>() {
             @Override
             public void onResponse(Call<StarWarsResponse> call, Response<StarWarsResponse> response) {
-                Log.d(TAG, "onResponse: success");
+                Log.d(TAG, "onResponse: success" + response.body().getResults().get(0).getName());
                 people.addAll(response.body().getResults());
             }
 

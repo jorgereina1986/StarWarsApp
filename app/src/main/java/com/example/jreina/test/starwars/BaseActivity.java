@@ -23,24 +23,29 @@ public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
     private RecyclerView starWarsRv;
+    private SwAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         starWarsRv = findViewById(R.id.star_wars_rv);
         starWarsRv.setLayoutManager(new LinearLayoutManager(this));
-        starWarsRv.setAdapter(new SwAdapter());
+        adapter = new SwAdapter();
+        starWarsRv.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
 
 
 
 
-        SwViewModel viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
-        viewModel.getPeople().observe(this, new Observer<List<Results>>() {
-            @Override
-            public void onChanged(@Nullable List<Results> results) {
 
-            }
-        });
+//        SwViewModel viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
+//        viewModel.getPeople().observe(this, new Observer<List<Results>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Results> results) {
+//
+//            }
+//        });
 
 
 
