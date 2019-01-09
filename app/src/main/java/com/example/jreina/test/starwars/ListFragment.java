@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ListFragment extends Fragment {
 
-    private static final String TAG = StarWarsActivity.class.getSimpleName();
+    private static final String TAG = ListFragment.class.getSimpleName();
     private RecyclerView starWarsRv;
     private SwAdapter adapter;
     private List<Results> characterList = new ArrayList<>();

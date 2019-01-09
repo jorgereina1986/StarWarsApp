@@ -6,9 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".starwars.StarWarsActivity">
 
+    <TextView
+        android:id="@+id/no_network_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:text="@string/no_network_available"
+        android:visibility="gone"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
