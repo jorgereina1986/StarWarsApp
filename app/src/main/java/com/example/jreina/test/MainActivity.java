@@ -6,24 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
-import android.support.constraint.solver.widgets.Rectangle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
-import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.jreina.test.starwars.BaseActivity;
+import com.example.jreina.test.starwars.StarWarsActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -64,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 //                    textView.setText(imageView.getX() + " " + imageView.getY() + "translation: " + imageView.getTranslationX() + " " + imageView.getTranslationY());
 //                }
 
-                Intent intent = new Intent(getBaseContext(), BaseActivity.class);
+                Intent intent = new Intent(getBaseContext(), StarWarsActivity.class);
                 startActivity(intent);
             }
         });

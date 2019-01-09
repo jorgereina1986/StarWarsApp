@@ -31,7 +31,7 @@ public class SwViewModel extends ViewModel {
         return characterList;
     }
 
-        private void loadCharacters() {
+    private void loadCharacters() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

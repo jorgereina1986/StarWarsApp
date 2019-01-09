@@ -42,12 +42,24 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
         return characterList.size();
     }
 
-    class SwViewHolder extends RecyclerView.ViewHolder {
+    class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView nameTv;
         public SwViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTv = itemView.findViewById(R.id.row_name);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+
+            int clickedPosition = getAdapterPosition();
+
+        }
+    }
+
+    interface ItemClickListener {
+        void onItemClick(int position);
     }
 }

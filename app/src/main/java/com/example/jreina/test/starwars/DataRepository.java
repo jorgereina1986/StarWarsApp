@@ -18,8 +18,6 @@ public class DataRepository {
 
     private List<Results> peoples = new ArrayList<>();
 
-
-
     public List<Results> getPeoples() {
         if (peoples == null || peoples.size() <= 0) {
             loadPeople();
