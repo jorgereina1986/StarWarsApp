@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.jreina.test.R;
 
-public class StarWarsActivity extends AppCompatActivity {
+public class StarWarsActivity extends AppCompatActivity implements ListFragment.ItemClickListener {
 
     private TextView noNetworkTv;
     @Override
@@ -36,5 +36,14 @@ public class StarWarsActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        DetailsFragment detailsFragment = new DetailsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, detailsFragment)
+                .commit();
     }
 }

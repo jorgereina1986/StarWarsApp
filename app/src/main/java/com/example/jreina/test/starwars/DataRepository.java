@@ -16,20 +16,20 @@ public class DataRepository {
     private static final String TAG = DataRepository.class.getSimpleName();
     private static final String BASE_URL = "https://swapi.co/api/";
 
-    private List<Results> peoples = new ArrayList<>();
+    private List<Character> peoples = new ArrayList<>();
 
-    public List<Results> getPeoples() {
+    public List<Character> getPeoples() {
         if (peoples == null || peoples.size() <= 0) {
             loadPeople();
         }
         return peoples;
     }
 
-    public void setPeoples(List<Results> peoples) {
+    public void setPeoples(List<Character> peoples) {
         this.peoples = peoples;
     }
 
-    public Results getPerson(int position) {
+    public Character getPerson(int position) {
         return peoples.get(position);
     }
 
@@ -38,7 +38,7 @@ public class DataRepository {
     }
 
     private void loadPeople() {
-        final List<Results> people =  new ArrayList<>();
+        final List<Character> people =  new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -49,9 +49,9 @@ public class DataRepository {
         call.enqueue(new Callback<StarWarsResponse>() {
             @Override
             public void onResponse(Call<StarWarsResponse> call, Response<StarWarsResponse> response) {
-                Log.d(TAG, "onResponse: success" + response.body().getResults().get(0).getName());
-//                people.addAll(response.body().getResults());
-                peoples.addAll(response.body().getResults());
+                Log.d(TAG, "onResponse: success" + response.body().getCharacters().get(0).getName());
+//                people.addAll(response.body().getCharacters());
+                peoples.addAll(response.body().getCharacters());
             }
 
             @Override

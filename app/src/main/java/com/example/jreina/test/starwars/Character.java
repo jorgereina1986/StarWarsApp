@@ -2,7 +2,7 @@ package com.example.jreina.test.starwars;
 
 import java.util.List;
 
-public class Results {
+public class Character {
     private String name;
 
     public String getName() {

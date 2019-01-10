@@ -1,16 +1,19 @@
 package com.example.jreina.test.starwars;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class StarWarsResponse {
 
-    private List<Results> results;
+    @SerializedName("results")
+    private List<Character> characters;
 
-    public List<Results> getResults() {
-        return results;
+    public List<Character> getCharacters() {
+        return characters;
     }
 
-    public void setResults(List<Results> results) {
-        this.results = results;
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
     }
 }

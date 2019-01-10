@@ -1,6 +1,5 @@
 package com.example.jreina.test.starwars;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
@@ -20,9 +19,19 @@ public class SwViewModel extends ViewModel {
 
 //    private DataRepository dataRepository = new DataRepository();
 
-    private MutableLiveData<List<Results>> characterList;
+    private MutableLiveData<List<Character>> characterList;
+    private MutableLiveData<Character> characterSelected = new MutableLiveData<>();
 
-    public MutableLiveData<List<Results>> getCharacterList() {
+
+    public void setCharacterSelected(Character character) {
+        characterSelected.setValue(character);
+    }
+
+    public MutableLiveData<Character> getCharacter() {
+        return characterSelected;
+    }
+
+    public MutableLiveData<List<Character>> getCharacterList() {
 
         if (characterList == null) {
             characterList = new MutableLiveData<>();
@@ -30,6 +39,7 @@ public class SwViewModel extends ViewModel {
         }
         return characterList;
     }
+
 
     private void loadCharacters() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
@@ -42,8 +52,8 @@ public class SwViewModel extends ViewModel {
         call.enqueue(new Callback<StarWarsResponse>() {
             @Override
             public void onResponse(Call<StarWarsResponse> call, Response<StarWarsResponse> response) {
-                Log.d(TAG, "onResponse: " + response.body().getResults().get(0).getName());
-                characterList.setValue(response.body().getResults());
+                Log.d(TAG, "onResponse: " + response.body().getCharacters().get(0).getName());
+                characterList.setValue(response.body().getCharacters());
             }
 
             @Override
@@ -52,4 +62,5 @@ public class SwViewModel extends ViewModel {
             }
         });
     }
+
 }

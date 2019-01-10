@@ -2,8 +2,6 @@ package com.example.jreina.test.starwars;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,7 +22,7 @@ public class ListFragment extends Fragment {
     private static final String TAG = ListFragment.class.getSimpleName();
     private RecyclerView starWarsRv;
     private SwAdapter adapter;
-    private List<Results> characterList = new ArrayList<>();
+    private List<Character> characterList = new ArrayList<>();
     private SwViewModel viewModel;
 
     public ListFragment() {
@@ -52,12 +50,17 @@ public class ListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
-        viewModel.getCharacterList().observe(this, new Observer<List<Results>>() {
+        viewModel.getCharacterList().observe(getActivity(), new Observer<List<Character>>() {
             @Override
-            public void onChanged(@Nullable List<Results> results) {
+            public void onChanged(@Nullable List<Character> results) {
                 characterList.addAll(results);
                 adapter.notifyDataSetChanged();
+
             }
         });
+    }
+
+    interface ItemClickListener {
+        void onItemClick(int position);
     }
 }

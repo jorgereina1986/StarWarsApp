@@ -17,12 +17,10 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     private static final String TAG = SwAdapter.class.getSimpleName();
 //    private DataRepository dataRepository = new DataRepository();
 
-    private List<Results> characterList;
-    private ItemClickListener listener;
+    private List<Character> characterList;
 
-    public SwAdapter(List<Results> characterList, ItemClickListener listener) {
+    public SwAdapter(List<Character> characterList) {
         this.characterList = characterList;
-        this.listener = listener;
     }
 
     @NonNull
@@ -34,7 +32,7 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SwViewHolder swViewHolder, int i) {
-        Results character = characterList.get(i);
+        Character character = characterList.get(i);
         swViewHolder.nameTv.setText(character.getName());
     }
 
@@ -56,12 +54,6 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
         @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            listener.onItemClick(clickedPosition);
-
         }
-    }
-
-    interface ItemClickListener {
-        void onItemClick(int position);
     }
 }
