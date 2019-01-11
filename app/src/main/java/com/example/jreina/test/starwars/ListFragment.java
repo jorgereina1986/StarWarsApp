@@ -1,6 +1,5 @@
 package com.example.jreina.test.starwars;
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -67,6 +66,7 @@ public class ListFragment extends Fragment {
         viewModel.getCharacterList().observe(getActivity(), new Observer<List<Character>>() {
             @Override
             public void onChanged(@Nullable List<Character> results) {
+                characterList.clear();
                 characterList.addAll(results);
                 adapter.notifyDataSetChanged();
 

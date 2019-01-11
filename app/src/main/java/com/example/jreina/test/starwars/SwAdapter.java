@@ -1,5 +1,6 @@
 package com.example.jreina.test.starwars;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -57,7 +58,6 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
             itemClickListener.onItemClick(clickedPosition);
-
         }
     }
 }

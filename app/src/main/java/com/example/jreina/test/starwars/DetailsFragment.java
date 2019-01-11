@@ -17,21 +17,24 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
 
+    private static final String POSITION = "psotion";
+
     private static SwViewModel swViewModel;
     private TextView detailsNameTv;
 
+    public static DetailsFragment newInstance(int pos) {
+
+        Bundle args = new Bundle();
+        args.putInt(POSITION, pos);
+        DetailsFragment fragment = new DetailsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        swViewModel = ViewModelProviders.of(this).get(SwViewModel.class);
-
-        swViewModel.getCharacter().observe(this, new Observer<Character>() {
-            @Override
-            public void onChanged(@Nullable Character character) {
-                detailsNameTv.setText(character.getName());
-            }
-        });
     }
 
     @Nullable
@@ -46,6 +49,13 @@ public class DetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        swViewModel = ViewModelProviders.of(this).get(SwViewModel.class);
+        swViewModel.getCharacterList().observe(this, new Observer<List<Character>>() {
+            @Override
+            public void onChanged(@Nullable List<Character> characters) {
+                int pos = getArguments().getInt(POSITION);
+                detailsNameTv.setText(characters.get(pos).getName());
+            }
+        });
     }
 }
