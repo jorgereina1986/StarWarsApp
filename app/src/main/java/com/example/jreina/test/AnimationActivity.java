@@ -21,14 +21,14 @@ import android.widget.TextView;
 
 import com.example.jreina.test.starwars.StarWarsActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class AnimationActivity extends AppCompatActivity {
     private TextView textView;
     private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_animation);
 
 
         textView = findViewById(R.id.hw);

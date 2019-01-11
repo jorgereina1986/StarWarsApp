@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jreina.test.R;
+import com.example.jreina.test.databinding.ItemRowBinding;
 
 import java.util.List;
 
@@ -27,14 +28,15 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     @NonNull
     @Override
     public SwViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row, viewGroup, false);
-        return new SwViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        ItemRowBinding binding = ItemRowBinding.inflate(inflater, viewGroup, false);
+        return new SwViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SwViewHolder swViewHolder, int i) {
         Character character = characterList.get(i);
-        swViewHolder.nameTv.setText(character.getName());
+        swViewHolder.binding.rowName.setText(character.getName());
     }
 
     @Override
@@ -45,12 +47,13 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
     class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private ItemRowBinding binding;
         private TextView nameTv;
 
-        public SwViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nameTv = itemView.findViewById(R.id.row_name);
-            itemView.setOnClickListener(this);
+        public SwViewHolder(@NonNull ItemRowBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            binding.getRoot().setOnClickListener(this);
         }
 
         @Override
