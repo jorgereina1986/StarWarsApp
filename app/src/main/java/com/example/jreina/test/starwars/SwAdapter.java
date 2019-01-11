@@ -1,6 +1,5 @@
 package com.example.jreina.test.starwars;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,7 +15,6 @@ import java.util.List;
 public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
     private static final String TAG = SwAdapter.class.getSimpleName();
-//    private DataRepository dataRepository = new DataRepository();
 
     private List<Character> characterList;
     private ListFragment.ItemClickListener itemClickListener;
@@ -48,6 +46,7 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView nameTv;
+
         public SwViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTv = itemView.findViewById(R.id.row_name);

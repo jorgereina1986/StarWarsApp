@@ -1,7 +1,5 @@
 package com.example.jreina.test.starwars;
 
-import java.util.List;
-
 public class Character {
     private String name;
 

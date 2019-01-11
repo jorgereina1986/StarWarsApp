@@ -27,15 +27,6 @@ public class ListFragment extends Fragment {
     private SwViewModel viewModel;
     private ItemClickListener itemClickListener;
 
-    public ListFragment() {
-        // Required empty public constructor
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

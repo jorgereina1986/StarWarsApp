@@ -17,22 +17,9 @@ public class SwViewModel extends ViewModel {
     private static final String BASE_URL = "https://swapi.co/api/";
     private static final String TAG = SwViewModel.class.getSimpleName();
 
-//    private DataRepository dataRepository = new DataRepository();
-
     private MutableLiveData<List<Character>> characterList;
-    private MutableLiveData<Character> characterSelected = new MutableLiveData<>();
-
-
-    public void setCharacterSelected(Character character) {
-        characterSelected.setValue(character);
-    }
-
-    public MutableLiveData<Character> getCharacter() {
-        return characterSelected;
-    }
 
     public MutableLiveData<List<Character>> getCharacterList() {
-
         if (characterList == null) {
             characterList = new MutableLiveData<>();
             loadCharacters();
