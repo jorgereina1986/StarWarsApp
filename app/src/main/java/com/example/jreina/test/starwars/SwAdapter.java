@@ -48,7 +48,6 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ItemRowBinding binding;
-        private TextView nameTv;
 
         public SwViewHolder(@NonNull ItemRowBinding binding) {
             super(binding.getRoot());

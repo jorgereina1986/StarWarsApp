@@ -18,6 +18,7 @@ public class SwViewModel extends ViewModel {
     private static final String TAG = SwViewModel.class.getSimpleName();
 
     private MutableLiveData<List<Character>> characterList;
+    private MutableLiveData<Character> character = new MutableLiveData<>();
 
     public MutableLiveData<List<Character>> getCharacterList() {
         if (characterList == null) {
@@ -27,6 +28,13 @@ public class SwViewModel extends ViewModel {
         return characterList;
     }
 
+    public MutableLiveData<Character> getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character.setValue(character);
+    }
 
     private void loadCharacters() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
