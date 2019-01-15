@@ -22,8 +22,6 @@ import java.util.List;
 public class ListFragment extends Fragment {
 
     private FragmentListBinding binding;
-
-    private static final String TAG = ListFragment.class.getSimpleName();
     private SwAdapter adapter;
     private List<Character> characterList = new ArrayList<>();
     private SwViewModel viewModel;
@@ -53,7 +51,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (characterList == null | characterList.isEmpty()) {
+        if (characterList == null || characterList.isEmpty()) {
             viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
             viewModel.getCharacterList().observe(getActivity(), new Observer<List<Character>>() {
                 @Override
