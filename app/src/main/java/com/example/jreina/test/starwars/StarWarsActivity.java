@@ -26,6 +26,7 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_star_wars);
         loadListFragment();
+        binding.setLifecycleOwner(this);
         binding.reloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +74,17 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
     @Override
     public void onItemClick(final int position) {
 
-
         viewModel.getCharacterList().observe(this, new Observer<List<Character>>() {
             @Override
             public void onChanged(@Nullable List<Character> characters) {
                 viewModel.setCharacter(characters.get(position));
+            }
+        });
+
+        viewModel.getCharacterName().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                viewModel.setCharacterName(s);
             }
         });
 

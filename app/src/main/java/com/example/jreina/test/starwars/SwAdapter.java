@@ -6,9 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.jreina.test.R;
+import com.example.jreina.test.BR;
 import com.example.jreina.test.databinding.ItemRowBinding;
 
 import java.util.List;
@@ -34,9 +33,9 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SwViewHolder swViewHolder, int i) {
+    public void onBindViewHolder(@NonNull SwViewHolder holder, int i) {
         Character character = characterList.get(i);
-        swViewHolder.binding.rowName.setText(character.getName());
+        holder.bind(character);
     }
 
     @Override
@@ -53,6 +52,11 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
             super(binding.getRoot());
             this.binding = binding;
             binding.getRoot().setOnClickListener(this);
+        }
+
+        private void bind(Character character) {
+            binding.setVariable(BR.character, character);
+            binding.executePendingBindings();
         }
 
         @Override

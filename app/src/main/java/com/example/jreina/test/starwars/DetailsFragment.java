@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import com.example.jreina.test.R;
 import com.example.jreina.test.databinding.FragmentDetailsBinding;
 
-import java.util.List;
-
 public class DetailsFragment extends Fragment {
 
     private FragmentDetailsBinding binding;

@@ -2,6 +2,7 @@ package com.example.jreina.test.starwars;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.databinding.Bindable;
 import android.util.Log;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class SwViewModel extends ViewModel {
 
     private MutableLiveData<List<Character>> characterList;
     private MutableLiveData<Character> character = new MutableLiveData<>();
+    private MutableLiveData<String> characterName = new MutableLiveData<>();
 
     public MutableLiveData<List<Character>> getCharacterList() {
         if (characterList == null) {
@@ -34,6 +36,14 @@ public class SwViewModel extends ViewModel {
 
     public void setCharacter(Character character) {
         this.character.setValue(character);
+    }
+
+    public MutableLiveData<String> getCharacterName() {
+        return characterName;
+    }
+    
+    public void setCharacterName(String characterName) {
+        this.characterName.setValue(characterName);
     }
 
     private void loadCharacters() {

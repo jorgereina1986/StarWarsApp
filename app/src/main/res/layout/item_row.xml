@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="viewmodel"
-            type="com.example.jreina.test.starwars.SwViewModel" />
+            name="character"
+            type="com.example.jreina.test.starwars.Character" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:text="@{character.name}"
             android:textSize="16sp" />
 
     </android.support.constraint.ConstraintLayout>
