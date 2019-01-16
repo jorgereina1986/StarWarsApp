@@ -43,7 +43,7 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
             showViews(isNetworkAvailable());
         } else {
             showViews(isNetworkAvailable());
-            ListFragment listFragment = new ListFragment();
+            ListFragment listFragment = ListFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_container, listFragment, "listFragment")
