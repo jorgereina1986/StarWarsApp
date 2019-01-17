@@ -2,13 +2,13 @@ package com.example.jreina.test.starwars;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jreina.test.BR;
 import com.example.jreina.test.databinding.ItemRowBinding;
+import com.example.jreina.test.starwars.data.Character;
 
 import java.util.List;
 

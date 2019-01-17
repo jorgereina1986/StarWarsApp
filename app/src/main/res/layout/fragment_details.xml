@@ -4,7 +4,7 @@
     <data>
         <variable
             name="character"
-            type="com.example.jreina.test.starwars.Character"/>
+            type="com.example.jreina.test.starwars.data.Character"/>
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

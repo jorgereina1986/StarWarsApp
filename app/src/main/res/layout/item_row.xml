@@ -5,7 +5,7 @@
 
         <variable
             name="character"
-            type="com.example.jreina.test.starwars.Character" />
+            type="com.example.jreina.test.starwars.data.Character" />
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

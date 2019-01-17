@@ -14,8 +14,11 @@ import android.view.View;
 
 import com.example.jreina.test.R;
 import com.example.jreina.test.databinding.ActivityStarWarsBinding;
+import com.example.jreina.test.starwars.data.Character;
 
 import java.util.List;
+
+// https://github.com/hazems/mvvm-sample-app/blob/part1/app/src/main/java/com/example/test/mvvmsampleapp/viewmodel/ProjectListViewModel.java
 
 public class StarWarsActivity extends AppCompatActivity implements ListFragment.ItemClickListener {
 

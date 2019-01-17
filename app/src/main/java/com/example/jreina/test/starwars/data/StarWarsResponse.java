@@ -1,5 +1,6 @@
-package com.example.jreina.test.starwars;
+package com.example.jreina.test.starwars.data;
 
+import com.example.jreina.test.starwars.data.Character;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

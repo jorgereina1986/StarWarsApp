@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.jreina.test.R;
 import com.example.jreina.test.databinding.FragmentDetailsBinding;
+import com.example.jreina.test.starwars.data.Character;
 
 public class DetailsFragment extends Fragment {
 

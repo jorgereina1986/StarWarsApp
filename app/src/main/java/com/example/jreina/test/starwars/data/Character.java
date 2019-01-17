@@ -1,4 +1,4 @@
-package com.example.jreina.test.starwars;
+package com.example.jreina.test.starwars.data;
 
 public class Character {
     private String name;

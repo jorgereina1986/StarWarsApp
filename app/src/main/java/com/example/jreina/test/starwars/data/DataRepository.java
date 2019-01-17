@@ -1,14 +1,10 @@
-package com.example.jreina.test.starwars;
+package com.example.jreina.test.starwars.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.example.jreina.test.starwars.data.Character;
-import com.example.jreina.test.starwars.data.StarWarsApi;
-import com.example.jreina.test.starwars.data.StarWarsResponse;
-
+import java.net.HttpCookie;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,38 +13,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SwViewModel extends ViewModel {
+public class DataRepository {
 
     private static final String BASE_URL = "https://swapi.co/api/";
-    private static final String TAG = SwViewModel.class.getSimpleName();
+    private static final String TAG = DataRepository.class.getSimpleName();
+    private MutableLiveData<List<Character>> characterList = new MutableLiveData<>();
 
-    private MutableLiveData<List<Character>> characterList;
-    private MutableLiveData<Character> character = new MutableLiveData<>();
-    private MutableLiveData<String> characterName = new MutableLiveData<>();
-
-
-    public MutableLiveData<List<Character>> getCharacterList() {
+    public LiveData<List<Character>> getCharacterList() {
         if (characterList == null) {
             characterList = new MutableLiveData<>();
             loadCharacters();
         }
         return characterList;
-    }
-
-    public MutableLiveData<Character> getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(Character character) {
-        this.character.setValue(character);
-    }
-
-    public MutableLiveData<String> getCharacterName() {
-        return characterName;
-    }
-    
-    public void setCharacterName(String characterName) {
-        this.characterName.setValue(characterName);
     }
 
     private void loadCharacters() {
@@ -72,5 +48,4 @@ public class SwViewModel extends ViewModel {
             }
         });
     }
-
 }
