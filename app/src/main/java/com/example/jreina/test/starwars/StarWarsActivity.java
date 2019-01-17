@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -25,8 +26,10 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_star_wars);
-        loadListFragment();
         binding.setLifecycleOwner(this);
+
+        loadListFragment();
+
         binding.reloadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,33 +38,37 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
         });
 
         viewModel = ViewModelProviders.of(this).get(SwViewModel.class);
-
     }
 
     private void loadListFragment() {
-        if (!isNetworkAvailable()) {
-            showViews(isNetworkAvailable());
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (isNetworkAvailable()) {
+            hideOfflineViews();
+            //checking to see if container doesn't have a fragment
+            if (fragmentManager.findFragmentById(R.id.fragment_container) == null) {
+                ListFragment listFragment = ListFragment.newInstance();
+                fragmentManager
+                        .beginTransaction()
+                        .add(R.id.fragment_container, listFragment, "listFragment")
+                        .commit();
+            }
         } else {
-            showViews(isNetworkAvailable());
-            ListFragment listFragment = ListFragment.newInstance();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container, listFragment, "listFragment")
-                    .commit();
+            showOfflineViews();
         }
     }
 
-    private void showViews(boolean isOnline) {
-        if (!isOnline) {
-            binding.noWifiIv.setVisibility(View.VISIBLE);
-            binding.noNetworkText.setVisibility(View.VISIBLE);
-            binding.reloadBtn.setVisibility(View.VISIBLE);
-        } else {
-            binding.noWifiIv.setVisibility(View.INVISIBLE);
-            binding.noNetworkText.setVisibility(View.INVISIBLE);
-            binding.reloadBtn.setVisibility(View.INVISIBLE);
-        }
+    private void showOfflineViews() {
+        binding.noWifiIv.setVisibility(View.VISIBLE);
+        binding.noNetworkText.setVisibility(View.VISIBLE);
+        binding.reloadBtn.setVisibility(View.VISIBLE);
+    }
 
+    private void hideOfflineViews() {
+        binding.noWifiIv.setVisibility(View.INVISIBLE);
+        binding.noNetworkText.setVisibility(View.INVISIBLE);
+        binding.reloadBtn.setVisibility(View.INVISIBLE);
     }
 
     private boolean isNetworkAvailable() {
