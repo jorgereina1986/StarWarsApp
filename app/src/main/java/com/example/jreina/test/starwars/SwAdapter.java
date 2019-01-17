@@ -6,9 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.jreina.test.R;
+import com.example.jreina.test.BR;
 import com.example.jreina.test.databinding.ItemRowBinding;
 
 import java.util.List;
@@ -20,8 +19,7 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     private List<Character> characterList;
     private ListFragment.ItemClickListener itemClickListener;
 
-    public SwAdapter(List<Character> characterList, ListFragment.ItemClickListener itemClickListener) {
-        this.characterList = characterList;
+    public SwAdapter(ListFragment.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
@@ -34,26 +32,34 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SwViewHolder swViewHolder, int i) {
+    public void onBindViewHolder(@NonNull SwViewHolder holder, int i) {
         Character character = characterList.get(i);
-        swViewHolder.binding.rowName.setText(character.getName());
+        holder.bind(character);
     }
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: " + characterList.size());
-        return characterList.size();
+        return characterList != null ? characterList.size() : 0;
+    }
+
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
+        notifyDataSetChanged();
     }
 
     class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ItemRowBinding binding;
-        private TextView nameTv;
 
-        public SwViewHolder(@NonNull ItemRowBinding binding) {
+        private SwViewHolder(@NonNull ItemRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             binding.getRoot().setOnClickListener(this);
+        }
+
+        private void bind(Character character) {
+            binding.setVariable(BR.character, character);
+            binding.executePendingBindings();
         }
 
         @Override
