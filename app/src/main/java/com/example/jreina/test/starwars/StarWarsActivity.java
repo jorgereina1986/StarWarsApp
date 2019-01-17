@@ -40,9 +40,9 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
 
     private void loadListFragment() {
         if (!isNetworkAvailable()) {
-            showViews(isNetworkAvailable());
+            showOfflineViews();
         } else {
-            showViews(isNetworkAvailable());
+            hideOfflineViews();
             ListFragment listFragment = ListFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()
@@ -51,17 +51,16 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
         }
     }
 
-    private void showViews(boolean isOnline) {
-        if (!isOnline) {
-            binding.noWifiIv.setVisibility(View.VISIBLE);
-            binding.noNetworkText.setVisibility(View.VISIBLE);
-            binding.reloadBtn.setVisibility(View.VISIBLE);
-        } else {
-            binding.noWifiIv.setVisibility(View.INVISIBLE);
-            binding.noNetworkText.setVisibility(View.INVISIBLE);
-            binding.reloadBtn.setVisibility(View.INVISIBLE);
-        }
+    private void showOfflineViews() {
+        binding.noWifiIv.setVisibility(View.VISIBLE);
+        binding.noNetworkText.setVisibility(View.VISIBLE);
+        binding.reloadBtn.setVisibility(View.VISIBLE);
+    }
 
+    private void hideOfflineViews() {
+        binding.noWifiIv.setVisibility(View.INVISIBLE);
+        binding.noNetworkText.setVisibility(View.INVISIBLE);
+        binding.reloadBtn.setVisibility(View.INVISIBLE);
     }
 
     private boolean isNetworkAvailable() {
