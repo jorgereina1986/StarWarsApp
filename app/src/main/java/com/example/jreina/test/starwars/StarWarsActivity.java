@@ -46,7 +46,6 @@ public class StarWarsActivity extends AppCompatActivity implements ListFragment.
 
         if (isNetworkAvailable()) {
             hideOfflineViews();
-            //checking to see if container doesn't have a fragment
             if (fragmentManager.findFragmentById(R.id.fragment_container) == null) {
                 ListFragment listFragment = ListFragment.newInstance();
                 fragmentManager

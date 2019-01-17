@@ -19,8 +19,7 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
     private List<Character> characterList;
     private ListFragment.ItemClickListener itemClickListener;
 
-    public SwAdapter(List<Character> characterList, ListFragment.ItemClickListener itemClickListener) {
-        this.characterList = characterList;
+    public SwAdapter(ListFragment.ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
@@ -40,15 +39,19 @@ public class SwAdapter extends RecyclerView.Adapter<SwAdapter.SwViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: " + characterList.size());
-        return characterList.size();
+        return characterList != null ? characterList.size() : 0;
+    }
+
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
+        notifyDataSetChanged();
     }
 
     class SwViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ItemRowBinding binding;
 
-        public SwViewHolder(@NonNull ItemRowBinding binding) {
+        private SwViewHolder(@NonNull ItemRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             binding.getRoot().setOnClickListener(this);
