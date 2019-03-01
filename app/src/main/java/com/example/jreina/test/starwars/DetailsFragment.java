@@ -35,6 +35,7 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable Character character) {
                 binding.setCharacter(character);
+                // I dont think code below is needed
                 binding.detailsNameTv.setText(character.getName());
             }
         });
